@@ -1,6 +1,13 @@
+import ExerciseCard from '@/components/ExerciseCard';
+import { baseUrl, fetchApi } from '@/utils/fetchApi';
+import { IExercise } from '@/utils/types';
+import { Box, Card, Container, Flex, Heading, Text } from '@chakra-ui/react';
 import Head from 'next/head';
+import Image from 'next/image';
 
-export default function Home() {
+type HomeProps = { exercises: IExercise[] };
+
+export default function Home({ exercises }: HomeProps) {
   return (
     <>
       <Head>
@@ -9,6 +16,28 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
+      <Box bg="gray.100">
+        <Flex
+          flexWrap="wrap"
+          justifyContent="center"
+          alignItems="center"
+          gap="10px"
+        >
+          {exercises.map((exercise: IExercise) => (
+            <ExerciseCard key={exercise.id} exercise={exercise} />
+          ))}
+        </Flex>
+      </Box>
     </>
   );
+}
+
+export async function getStaticProps() {
+  const allExercises = await fetchApi(baseUrl);
+
+  return {
+    props: {
+      exercises: allExercises,
+    },
+  };
 }
