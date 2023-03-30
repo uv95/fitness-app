@@ -1,13 +1,19 @@
 import ExerciseCard from '@/components/ExerciseCard';
+import Pagination from '@/components/Pagination';
 import { baseUrl, fetchApi } from '@/utils/fetchApi';
+import { paginate } from '@/utils/paginationHelper';
 import { IExercise } from '@/utils/types';
-import { Box, Card, Container, Flex, Heading, Text } from '@chakra-ui/react';
+import { Box, Flex } from '@chakra-ui/react';
 import Head from 'next/head';
-import Image from 'next/image';
+import { useState } from 'react';
 
 type HomeProps = { exercises: IExercise[] };
 
 export default function Home({ exercises }: HomeProps) {
+  const [currentPage, setCurrentPage] = useState(1);
+  const pageSize = 20;
+
+  const paginatedExercises = paginate(exercises, currentPage, pageSize);
   return (
     <>
       <Head>
@@ -17,15 +23,23 @@ export default function Home({ exercises }: HomeProps) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Box bg="gray.100">
-        <Flex
-          flexWrap="wrap"
-          justifyContent="center"
-          alignItems="center"
-          gap="10px"
-        >
-          {exercises.map((exercise: IExercise) => (
-            <ExerciseCard key={exercise.id} exercise={exercise} />
-          ))}
+        <Flex flexDirection={'column'} alignItems="center">
+          <Flex
+            flexWrap="wrap"
+            justifyContent="center"
+            alignItems="center"
+            gap="10px"
+          >
+            {paginatedExercises.map((exercise: IExercise) => (
+              <ExerciseCard key={exercise.id} exercise={exercise} />
+            ))}
+          </Flex>
+          <Pagination
+            itemsLength={exercises.length}
+            currentPage={currentPage}
+            pageSize={pageSize}
+            changePage={setCurrentPage}
+          />
         </Flex>
       </Box>
     </>
