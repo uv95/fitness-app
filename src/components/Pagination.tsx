@@ -17,17 +17,17 @@ const Pagination = ({
 }: Props) => {
   const pagesCount = Math.ceil(itemsLength / pageSize);
 
-  if (pagesCount === 1) return null;
-
   const pages = [...Array(pagesCount)].map((_, i) => i + 1);
 
   return (
-    <Flex alignItems="center">
-      <ChevronLeftIcon
-        boxSize={6}
-        onClick={() => changePage(currentPage === 1 ? 1 : currentPage - 1)}
-        cursor="pointer"
-      />
+    <Flex alignItems="center" mt="auto">
+      {pagesCount !== 1 && (
+        <ChevronLeftIcon
+          boxSize={6}
+          onClick={() => changePage(currentPage === 1 ? 1 : currentPage - 1)}
+          cursor="pointer"
+        />
+      )}
       {pages
         .slice(
           currentPage < 4 ? 0 : currentPage - 3,
@@ -42,13 +42,17 @@ const Pagination = ({
             {page}
           </Button>
         ))}
-      <ChevronRightIcon
-        boxSize={6}
-        onClick={() =>
-          changePage(currentPage === pagesCount ? pagesCount : currentPage + 1)
-        }
-        cursor="pointer"
-      />
+      {pagesCount !== 1 && (
+        <ChevronRightIcon
+          boxSize={6}
+          onClick={() =>
+            changePage(
+              currentPage === pagesCount ? pagesCount : currentPage + 1
+            )
+          }
+          cursor="pointer"
+        />
+      )}
     </Flex>
   );
 };
