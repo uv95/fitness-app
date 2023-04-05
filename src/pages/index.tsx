@@ -1,5 +1,6 @@
 import ExerciseCard from '@/components/ExerciseCard';
 import Filter from '@/components/Filter';
+import FilterTags from '@/components/FilterTags';
 import Pagination from '@/components/Pagination';
 import { baseUrl, fetchApi } from '@/utils/fetchApi';
 import { paginate } from '@/utils/paginationHelper';
@@ -16,7 +17,6 @@ export default function Home({ exercises }: HomeProps) {
 
   const paginatedExercises = paginate(exercises, currentPage, pageSize);
 
-  console.log(exercises, 'exercises');
   return (
     <>
       <Head>
@@ -33,6 +33,7 @@ export default function Home({ exercises }: HomeProps) {
           margin="0 auto"
         >
           <Filter />
+          <FilterTags />
           <Flex
             flexWrap="wrap"
             justifyContent="center"

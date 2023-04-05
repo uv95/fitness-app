@@ -20,6 +20,13 @@ function filterReducer(state: IState, action: IFilterActions): IState {
           ? [...state.bodyPart, bodyPartItem]
           : state.bodyPart.filter((item) => item !== bodyPartItem),
       };
+    case FilterActionsKind.REMOVE_FILTER:
+      const [filter] = payload;
+      return {
+        ...state,
+        bodyPart: state.bodyPart.filter((item) => item !== filter),
+        equipment: state.equipment.filter((item) => item !== filter),
+      };
 
     case FilterActionsKind.EQUIPMENT_CHECK_ALL:
       return {
