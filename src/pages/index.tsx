@@ -1,4 +1,5 @@
 import ExerciseCard from '@/components/ExerciseCard';
+import Filter from '@/components/Filter';
 import Pagination from '@/components/Pagination';
 import { baseUrl, fetchApi } from '@/utils/fetchApi';
 import { paginate } from '@/utils/paginationHelper';
@@ -11,9 +12,11 @@ type HomeProps = { exercises: IExercise[] };
 
 export default function Home({ exercises }: HomeProps) {
   const [currentPage, setCurrentPage] = useState(1);
-  const pageSize = 20;
+  const pageSize = 12;
 
   const paginatedExercises = paginate(exercises, currentPage, pageSize);
+
+  console.log(exercises, 'exercises');
   return (
     <>
       <Head>
@@ -23,12 +26,19 @@ export default function Home({ exercises }: HomeProps) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Box bg="gray.100">
-        <Flex flexDirection={'column'} alignItems="center">
+        <Flex
+          flexDirection={'column'}
+          alignItems="center"
+          maxW="1200px"
+          margin="0 auto"
+        >
+          <Filter />
           <Flex
             flexWrap="wrap"
             justifyContent="center"
             alignItems="center"
-            gap="10px"
+            gap="20px"
+            margin="20px 0"
           >
             {paginatedExercises.map((exercise: IExercise) => (
               <ExerciseCard key={exercise.id} exercise={exercise} />

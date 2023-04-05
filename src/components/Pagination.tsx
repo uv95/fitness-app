@@ -22,7 +22,7 @@ const Pagination = ({
   const pages = [...Array(pagesCount)].map((_, i) => i + 1);
 
   return (
-    <Flex mt="20px" alignItems="center">
+    <Flex alignItems="center">
       <ChevronLeftIcon
         boxSize={6}
         onClick={() => changePage(currentPage === 1 ? 1 : currentPage - 1)}
