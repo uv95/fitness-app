@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-export const baseUrl = 'https://exercisedb.p.rapidapi.com/exercises/';
+export const baseUrl = 'https://exercisedb.p.rapidapi.com/exercises';
 
 export const fetchApi = async (url: string) => {
   const { data } = await axios.get(url, {

@@ -4,11 +4,12 @@ import FilterTags from '@/components/FilterTags';
 import Pagination from '@/components/Pagination';
 import { FilterContext } from '@/context/FilterContext';
 import { baseUrl, fetchApi } from '@/utils/fetchApi';
-import { filterExercises } from '@/utils/filterExercises';
+import { filterByBodyPartAndEquipment } from '@/utils/filterExercises';
 import { paginate } from '@/utils/paginationHelper';
 import { IExercise } from '@/utils/types';
 import { Box, Flex } from '@chakra-ui/react';
 import Head from 'next/head';
+import Link from 'next/link';
 import { useContext, useEffect, useState } from 'react';
 
 type HomeProps = { exercises: IExercise[] };
@@ -23,7 +24,7 @@ export default function Home({ exercises }: HomeProps) {
   const pageSize = 12;
 
   useEffect(() => {
-    const filteredExercises = filterExercises(exercises, state);
+    const filteredExercises = filterByBodyPartAndEquipment(exercises, state);
     setFilteresdExercises(filteredExercises);
   }, [exercises, state]);
 
@@ -66,7 +67,9 @@ export default function Home({ exercises }: HomeProps) {
             p="20px 0"
           >
             {paginatedExercises.map((exercise: IExercise) => (
-              <ExerciseCard key={exercise.id} exercise={exercise} />
+              <Link href={`/exercise/${exercise.id}`} key={exercise.id}>
+                <ExerciseCard exercise={exercise} />
+              </Link>
             ))}
           </Flex>
           <Pagination

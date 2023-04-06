@@ -13,6 +13,7 @@ export interface IState {
   equipment: string[];
   bodyPart: string[];
 }
+
 export enum FilterActionsKind {
   TOGGLE_EQUIPMENT_FILTER = 'TOGGLE_EQUIPMENT_FILTER',
   TOGGLE_BODYPART_FILTER = 'TOGGLE_BODYPART_FILTER',
