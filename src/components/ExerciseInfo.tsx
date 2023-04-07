@@ -17,7 +17,7 @@ type Props = { exercise: IExercise };
 
 const ExerciseInfo = ({ exercise }: Props) => {
   return (
-    <Card w="90%" maxW="1000px" margin="0 auto 30px auto" h="340px">
+    <Card w="1030px" maxW="1030px" margin="0 auto 30px auto" h="340px">
       <CardBody>
         <Flex justifyContent="space-between" h="100%">
           <Image

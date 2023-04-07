@@ -1,6 +1,6 @@
 import { IExercise } from '@/utils/types';
 import { ChevronLeftIcon, ChevronRightIcon } from '@chakra-ui/icons';
-import { Box, Flex } from '@chakra-ui/react';
+import { Box, Container, Flex } from '@chakra-ui/react';
 import Link from 'next/link';
 import React, { useState } from 'react';
 import ExerciseCard from './ExerciseCard';
@@ -12,12 +12,12 @@ const Slider = ({ exercises }: Props) => {
 
   const goToPrevious = () => {
     const isFirstSlide = currentIndex === 0;
-    const newIndex = isFirstSlide ? currentIndex : currentIndex - 1;
+    const newIndex = isFirstSlide ? exercises.length - 4 : currentIndex - 1;
     setCurrentIndex(newIndex);
   };
   const goToNext = () => {
-    const isLastSlide = currentIndex === exercises?.length - 4;
-    const newIndex = isLastSlide ? currentIndex : currentIndex + 1;
+    const isLastSlide = currentIndex === exercises.length - 4;
+    const newIndex = isLastSlide ? 0 : currentIndex + 1;
     setCurrentIndex(newIndex);
   };
   return (
@@ -25,29 +25,30 @@ const Slider = ({ exercises }: Props) => {
       <Flex alignItems="center" gap="10px">
         <ChevronLeftIcon
           onClick={goToPrevious}
-          w="30px"
-          h="30px"
+          w="35px"
+          h="35px"
           cursor="pointer"
         />
-        <Flex overflow="hidden" w="1000px">
-          {exercises &&
-            exercises.map((exercise) => (
-              <Link
-                key={exercise.id}
-                href={`/exercise/${exercise.id}`}
-                style={{
-                  transform: `translateX(-${currentIndex * 100}%)`,
-                  transition: 'transform 0.5s',
-                }}
-              >
+        <Flex overflow="hidden" w="1040px">
+          {exercises.map((exercise) => (
+            <Link
+              key={exercise.id}
+              href={`/exercise/${exercise.id}`}
+              style={{
+                transform: `translateX(-${currentIndex * 100}%)`,
+                transition: 'transform 0.5s',
+              }}
+            >
+              <Container p="5px">
                 <ExerciseCard exercise={exercise} />
-              </Link>
-            ))}
+              </Container>
+            </Link>
+          ))}
         </Flex>
         <ChevronRightIcon
           onClick={goToNext}
-          w="30px"
-          h="30px"
+          w="35px"
+          h="35px"
           cursor="pointer"
         />
       </Flex>
