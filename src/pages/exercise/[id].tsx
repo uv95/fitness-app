@@ -1,5 +1,6 @@
 import ExerciseInfo from '@/components/ExerciseInfo';
 import SimilarExercises from '@/components/SimilarExercises';
+import ExerciseInfoSkeleton from '@/components/Skeletons/ExerciseInfoSkeleton';
 import { baseUrl, fetchApi } from '@/utils/fetchApi';
 import {
   filterByBodyPart,
@@ -9,7 +10,7 @@ import {
 import { IExercise } from '@/utils/types';
 import { Box, Button, Divider } from '@chakra-ui/react';
 import Link from 'next/link';
-import React from 'react';
+import React, { Suspense } from 'react';
 
 type Props = {
   exercise: IExercise;
@@ -22,13 +23,15 @@ type Props = {
 
 const ExercisePage = ({ exercise, exercisesFiltered }: Props) => {
   return (
-    <Box bg="gray.100" minH="100vh">
+    <Box bg="gray.100" minH="calc(100vh - 100px)">
       <Link href="/" passHref>
         <Button m="20px">Back</Button>
       </Link>
-      <ExerciseInfo exercise={exercise} />
-      <Divider colorScheme="pink" />
-      <Divider colorScheme="pink" />
+
+      <Suspense fallback={<ExerciseInfoSkeleton />}>
+        <ExerciseInfo exercise={exercise} />
+      </Suspense>
+      <Divider />
       <SimilarExercises exercisesFiltered={exercisesFiltered} />
     </Box>
   );

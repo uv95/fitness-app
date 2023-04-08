@@ -11,7 +11,6 @@ import {
 } from '@chakra-ui/react';
 import Image from 'next/image';
 import React from 'react';
-import test from '../assets/images/test.jpg';
 
 type Props = { exercise: IExercise };
 
