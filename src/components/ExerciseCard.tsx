@@ -9,6 +9,7 @@ type Props = { exercise: IExercise };
 const ExerciseCard = ({ exercise }: Props) => {
   return (
     <Card
+      boxShadow="1px 1px 7px  rgb(0,0,0,0.12)"
       alignItems="center"
       p={{ md: '10px', base: '5px' }}
       w={{ md: '250px', base: '200px' }}

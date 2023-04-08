@@ -1,8 +1,6 @@
 import { IExercise } from '@/utils/types';
 import {
   Box,
-  Button,
-  Flex,
   Heading,
   Stack,
   Tab,
@@ -23,12 +21,12 @@ type Props = {
 
 const SimilarExercises = ({ exercisesFiltered }: Props) => {
   return (
-    <Box w="90%" maxW="1200px" m="20px auto 20px auto">
+    <Box w="90%" maxW="1210px" m="20px auto 20px auto">
       <Stack alignItems="center">
         <Heading fontSize={{ sm: '20px', md: '23px', lg: '30px' }}>
           Similar Exercises
         </Heading>
-        <Tabs variant="soft-rounded" w="100%">
+        <Tabs colorScheme={'gray'} variant="soft-rounded" w="100%">
           <TabList
             fontSize={{ base: '9px', sm: '15px' }}
             justifyContent="center"

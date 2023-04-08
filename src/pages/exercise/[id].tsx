@@ -7,9 +7,11 @@ import {
   filterByEquipment,
   filterByTarget,
 } from '@/utils/filterExercises';
+import { makeCamelCase } from '@/utils/makeCamelCase';
 import { IExercise } from '@/utils/types';
 import { Box, Button, Divider } from '@chakra-ui/react';
-import Link from 'next/link';
+import Head from 'next/head';
+import { useRouter } from 'next/router';
 import React, { Suspense } from 'react';
 
 type Props = {
@@ -22,18 +24,24 @@ type Props = {
 };
 
 const ExercisePage = ({ exercise, exercisesFiltered }: Props) => {
+  const router = useRouter();
   return (
-    <Box bg="gray.100" minH="calc(100vh - 100px)">
-      <Link href="/" passHref>
-        <Button m="20px">Back</Button>
-      </Link>
+    <>
+      <Head>
+        <title>{makeCamelCase(exercise.name)}</title>
+      </Head>
+      <Box minH="calc(100vh - 100px)">
+        <Button m="20px" onClick={() => router.back()}>
+          Back
+        </Button>
 
-      <Suspense fallback={<ExerciseInfoSkeleton />}>
-        <ExerciseInfo exercise={exercise} />
-      </Suspense>
-      <Divider />
-      <SimilarExercises exercisesFiltered={exercisesFiltered} />
-    </Box>
+        <Suspense fallback={<ExerciseInfoSkeleton />}>
+          <ExerciseInfo exercise={exercise} />
+        </Suspense>
+        <Divider />
+        <SimilarExercises exercisesFiltered={exercisesFiltered} />
+      </Box>
+    </>
   );
 };
 

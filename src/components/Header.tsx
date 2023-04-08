@@ -6,7 +6,7 @@ type Props = {};
 
 const Header = (props: Props) => {
   return (
-    <Box bg="white" h="50px">
+    <Box bg="gray.900" color="white" h="50px">
       <Flex
         alignItems="center"
         h="100%"

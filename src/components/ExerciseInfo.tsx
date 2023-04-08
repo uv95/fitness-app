@@ -8,7 +8,6 @@ import {
   Heading,
   Stack,
   Text,
-  useMediaQuery,
   Wrap,
 } from '@chakra-ui/react';
 import Image from 'next/image';
@@ -17,9 +16,9 @@ import styles from '../styles/ExerciseInfo.module.css';
 type Props = { exercise: IExercise };
 
 const ExerciseInfo = ({ exercise }: Props) => {
-  // const [isLessThan] = useMediaQuery('(max-width:)');
   return (
     <Card
+      boxShadow="1px 1px 7px  rgb(0,0,0,0.12)"
       minW="240px"
       w="90%"
       maxW="1200px"

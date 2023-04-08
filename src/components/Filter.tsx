@@ -1,5 +1,6 @@
 import { FilterContext } from '@/context/FilterContext';
 import { filters } from '@/utils/filters';
+import { makeCamelCase } from '@/utils/makeCamelCase';
 import { FilterActionsKind } from '@/utils/types';
 import { ChevronDownIcon } from '@chakra-ui/icons';
 import {
@@ -13,19 +14,25 @@ import {
   MenuDivider,
 } from '@chakra-ui/react';
 import React, { useContext } from 'react';
+import style from '../styles/Filter.module.css';
 
 const Filter = () => {
   const { state, dispatch } = useContext(FilterContext);
   const { equipment, bodyPart } = state;
 
   return (
-    <Flex mt="20px">
+    <Flex mt="20px" gap="10px">
       {filters.map((filter) => (
         <Menu key={filter.name}>
           <MenuButton as={Button} rightIcon={<ChevronDownIcon />}>
             {filter.placeholder}
           </MenuButton>
-          <MenuList p="10px" h="400px" overflowY="scroll">
+          <MenuList
+            p="10px"
+            h="400px"
+            overflowY="scroll"
+            className={style.filter}
+          >
             <Stack>
               <Checkbox
                 isChecked={
@@ -64,7 +71,7 @@ const Filter = () => {
                     })
                   }
                 >
-                  {item}
+                  {makeCamelCase(item)}
                 </Checkbox>
               ))}
             </Stack>

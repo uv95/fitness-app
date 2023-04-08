@@ -20,7 +20,7 @@ const Pagination = ({
   const pages = [...Array(pagesCount)].map((_, i) => i + 1);
 
   return (
-    <Flex alignItems="center" mt="auto">
+    <Flex alignItems="center" mt="auto" gap="5px">
       {pagesCount !== 1 && (
         <ChevronLeftIcon
           boxSize={6}
@@ -37,7 +37,8 @@ const Pagination = ({
           <Button
             key={page}
             onClick={() => changePage(page)}
-            colorScheme={page === currentPage ? 'blue' : 'gray'}
+            bg={page === currentPage ? 'gray.900 !important' : 'gray.100'}
+            color={page === currentPage ? 'white' : 'gray.900'}
           >
             {page}
           </Button>

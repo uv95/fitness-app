@@ -13,6 +13,7 @@ const Slider = ({ exercises }: Props) => {
         <Flex
           h={{ md: '315px', base: '275px' }}
           gap="20px"
+          p="0 5px"
           overflowX="scroll"
           w="100%"
           className={style.slider}

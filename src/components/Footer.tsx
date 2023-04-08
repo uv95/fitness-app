@@ -6,7 +6,7 @@ import github from '../assets/icons/github.svg';
 
 const Footer = () => {
   return (
-    <Box bg="white" h="50px" mt="20px">
+    <Box bg="gray.900" color="white" h="50px" mt="20px">
       <Flex alignItems="center" h="100%" w="90%" m="0 auto" fontSize="12px">
         <Text>Built with Next.js and Chakra-UI</Text>
         <Spacer />
