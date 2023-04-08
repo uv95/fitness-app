@@ -19,7 +19,7 @@ const Filter = () => {
   const { equipment, bodyPart } = state;
 
   return (
-    <Flex>
+    <Flex mt="20px">
       {filters.map((filter) => (
         <Menu key={filter.name}>
           <MenuButton as={Button} rightIcon={<ChevronDownIcon />}>

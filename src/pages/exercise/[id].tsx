@@ -1,6 +1,6 @@
 import ExerciseInfo from '@/components/ExerciseInfo';
 import SimilarExercises from '@/components/SimilarExercises';
-import ExerciseInfoSkeleton from '@/components/Skeletons/ExerciseInfoSkeleton';
+import ExerciseInfoSkeleton from '@/components/skeletons/ExerciseInfoSkeleton';
 import { baseUrl, fetchApi } from '@/utils/fetchApi';
 import {
   filterByBodyPart,

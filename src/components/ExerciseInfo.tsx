@@ -8,57 +8,79 @@ import {
   Heading,
   Stack,
   Text,
+  useMediaQuery,
+  Wrap,
 } from '@chakra-ui/react';
 import Image from 'next/image';
-import React from 'react';
+import styles from '../styles/ExerciseInfo.module.css';
 
 type Props = { exercise: IExercise };
 
 const ExerciseInfo = ({ exercise }: Props) => {
+  // const [isLessThan] = useMediaQuery('(max-width:)');
   return (
-    <Card w="1030px" maxW="1030px" margin="0 auto 30px auto" h="340px">
+    <Card
+      minW="240px"
+      w="90%"
+      maxW="1200px"
+      margin="0 auto 30px auto"
+      h="fit-content"
+    >
       <CardBody>
-        <Flex justifyContent="space-between" h="100%">
-          <Image
-            src={exercise.gifUrl}
-            alt="exercise gif"
-            width={300}
-            height={300}
-          />
-          <Stack gap="5px" w="60%">
-            <Heading>{makeCamelCase(exercise.name)}</Heading>
-            <Text fontSize="20px">
+        <Flex
+          justifyContent="space-between"
+          h="100%"
+          flexDirection={{ md: 'row', base: 'column' }}
+          alignItems={{ md: 'stretch', base: 'center' }}
+        >
+          <div className={styles.image}>
+            <Image
+              src={exercise.gifUrl}
+              alt="exercise gif"
+              width={320}
+              height={320}
+            />
+          </div>
+
+          <Stack gap="5px" maxW={{ base: '100%', md: '70%' }}>
+            <Heading fontSize={{ sm: '23px', lg: '30px' }}>
+              {makeCamelCase(exercise.name)}
+            </Heading>
+            <Text fontSize={{ lg: '20px', base: '15px' }}>
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Dicta
               voluptatem non adipisci deserunt reiciendis unde eveniet, beatae
               asperiores autem nulla accusantium, nesciunt fugiat quidem
               temporibus suscipit, maiores eius id voluptas.
             </Text>
-            <Flex gap="15px" mt="auto !important">
+            <Wrap
+              gap="15px"
+              mt={{ base: '15px !important', md: 'auto !important' }}
+            >
               <Badge
                 borderRadius="20px"
-                p="2px 10px"
-                fontSize="15px"
+                p="2px 8px"
+                fontSize={{ lg: '15px', base: '9px' }}
                 colorScheme="yellow"
               >
                 {makeCamelCase(exercise.bodyPart)}
               </Badge>
               <Badge
                 borderRadius="20px"
-                p="2px 10px"
-                fontSize="15px"
+                p="2px 8px"
+                fontSize={{ lg: '15px', base: '9px' }}
                 colorScheme="pink"
               >
                 {makeCamelCase(exercise.target)}
               </Badge>
               <Badge
                 borderRadius="20px"
-                p="2px 10px"
-                fontSize="15px"
+                p="2px 8px"
+                fontSize={{ lg: '15px', base: '9px' }}
                 colorScheme="blue"
               >
                 {makeCamelCase(exercise.equipment)}
               </Badge>
-            </Flex>
+            </Wrap>
           </Stack>
         </Flex>
       </CardBody>

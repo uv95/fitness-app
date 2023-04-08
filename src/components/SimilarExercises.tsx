@@ -23,23 +23,47 @@ type Props = {
 
 const SimilarExercises = ({ exercisesFiltered }: Props) => {
   return (
-    <Box mt="30px">
+    <Box w="90%" maxW="1200px" m="20px auto 20px auto">
       <Stack alignItems="center">
-        <Heading size="lg">Similar Exercises</Heading>
-        <Tabs variant="soft-rounded">
-          <TabList justifyContent="center" mt="15px">
-            <Tab>Body Part</Tab>
-            <Tab>Target Muscle</Tab>
-            <Tab>Equipment</Tab>
+        <Heading fontSize={{ sm: '20px', md: '23px', lg: '30px' }}>
+          Similar Exercises
+        </Heading>
+        <Tabs variant="soft-rounded" w="100%">
+          <TabList
+            fontSize={{ base: '9px', sm: '15px' }}
+            justifyContent="center"
+            mt="15px"
+          >
+            <Tab
+              fontSize="inherit"
+              p={{ base: '0 8px', sm: '0 16px' }}
+              h={{ base: '20px', sm: '30px' }}
+            >
+              Body Part
+            </Tab>
+            <Tab
+              fontSize="inherit"
+              p={{ base: '0 8px', sm: '0 16px' }}
+              h={{ base: '20px', sm: '30px' }}
+            >
+              Target Muscle
+            </Tab>
+            <Tab
+              fontSize="inherit"
+              p={{ base: '0 8px', sm: '0 16px' }}
+              h={{ base: '20px', sm: '30px' }}
+            >
+              Equipment
+            </Tab>
           </TabList>
           <TabPanels mt="15px">
-            <TabPanel>
+            <TabPanel p="0">
               <Slider exercises={exercisesFiltered?.byBodyPart} />
             </TabPanel>
-            <TabPanel>
+            <TabPanel p="0">
               <Slider exercises={exercisesFiltered?.byTarget} />
             </TabPanel>
-            <TabPanel>
+            <TabPanel p="0">
               <Slider exercises={exercisesFiltered?.byEquipment} />
             </TabPanel>
           </TabPanels>

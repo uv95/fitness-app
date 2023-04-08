@@ -2,7 +2,7 @@ import ExerciseCard from '@/components/ExerciseCard';
 import Filter from '@/components/Filter';
 import FilterTags from '@/components/FilterTags';
 import Pagination from '@/components/Pagination';
-import HomeExercisesSkeleton from '@/components/Skeletons/HomeExercisesSkeleton';
+import HomeExercisesSkeleton from '@/components/skeletons/HomeExercisesSkeleton';
 import { FilterContext } from '@/context/FilterContext';
 import { baseUrl, fetchApi } from '@/utils/fetchApi';
 import { filterByBodyPartAndEquipment } from '@/utils/filterExercises';

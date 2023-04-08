@@ -8,9 +8,13 @@ const FilterTags = () => {
   const allTags = [...state.equipment, ...state.bodyPart];
 
   return (
-    <Flex flexWrap={'wrap'} gap="10px">
+    <Flex flexWrap={'wrap'} gap="10px" m="20px 10px 0 10px">
       {allTags.map((tag) => (
-        <Tag key={tag} colorScheme="blackAlpha">
+        <Tag
+          key={tag}
+          colorScheme="blackAlpha"
+          fontSize={{ base: '9px', sm: '15px' }}
+        >
           <TagLabel>{tag}</TagLabel>
           <TagCloseButton
             onClick={() =>

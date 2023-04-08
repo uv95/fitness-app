@@ -7,12 +7,12 @@ import github from '../assets/icons/github.svg';
 const Footer = () => {
   return (
     <Box bg="white" h="50px" mt="20px">
-      <Flex alignItems="center" h="100%" w="90%" m="0 auto" fontSize="15px">
+      <Flex alignItems="center" h="100%" w="90%" m="0 auto" fontSize="12px">
         <Text>Built with Next.js and Chakra-UI</Text>
         <Spacer />
         <Link href="https://github.com/uv95" passHref>
           <Flex gap="5px">
-            <Image src={github} alt="github" width={20} height={20} />
+            <Image src={github} alt="github" width={17} height={17} />
             Github
           </Flex>
         </Link>
