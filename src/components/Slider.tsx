@@ -1,8 +1,8 @@
 import { IExercise } from '@/utils/types';
-import { Box, Container, Flex } from '@chakra-ui/react';
+import { Box, Card, Container, Flex } from '@chakra-ui/react';
 import Link from 'next/link';
-import ExerciseCard from './ExerciseCard';
 import style from '../styles/Slider.module.css';
+import { DynamicExerciseCard } from './DynamicExerciseCard';
 
 type Props = { exercises: IExercise[] };
 
@@ -21,7 +21,7 @@ const Slider = ({ exercises }: Props) => {
           {exercises.map((exercise) => (
             <Container m="0" p="0" key={exercise.id}>
               <Link passHref href={`/exercise/${exercise.id}`}>
-                <ExerciseCard exercise={exercise} />
+                <DynamicExerciseCard exercise={exercise} />
               </Link>
             </Container>
           ))}

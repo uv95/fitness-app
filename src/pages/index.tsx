@@ -1,16 +1,14 @@
-import ExerciseCard from '@/components/ExerciseCard';
 import Filter from '@/components/Filter';
 import FilterTags from '@/components/FilterTags';
+import PaginatedExercises from '@/components/PaginatedExercises';
 import Pagination from '@/components/Pagination';
-import HomeExercisesSkeleton from '@/components/skeletons/HomeExercisesSkeleton';
 import { FilterContext } from '@/context/FilterContext';
 import { baseUrl, fetchApi } from '@/utils/fetchApi';
 import { filterByBodyPartAndEquipment } from '@/utils/filterExercises';
 import { paginate } from '@/utils/paginationHelper';
 import { IExercise } from '@/utils/types';
 import { Box, Flex } from '@chakra-ui/react';
-import Link from 'next/link';
-import { Suspense, useContext, useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 
 type HomeProps = { exercises: IExercise[] };
 
@@ -58,13 +56,7 @@ export default function Home({ exercises }: HomeProps) {
           gap="20px"
           p="20px 0"
         >
-          <Suspense fallback={<HomeExercisesSkeleton />}>
-            {paginatedExercises.map((exercise: IExercise) => (
-              <Link href={`/exercise/${exercise.id}`} key={exercise.id}>
-                <ExerciseCard exercise={exercise} />
-              </Link>
-            ))}
-          </Suspense>
+          <PaginatedExercises paginatedExercises={paginatedExercises} />
         </Flex>
         <Pagination
           itemsLength={filteredExercises.length}

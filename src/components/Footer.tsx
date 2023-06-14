@@ -12,7 +12,13 @@ const Footer = () => {
         <Spacer />
         <Link href="https://github.com/uv95" passHref>
           <Flex gap="5px">
-            <Image src={github} alt="github" width={17} height={17} />
+            <Image
+              src={github}
+              alt="github"
+              width={17}
+              height={17}
+              style={{ width: 17, height: 17 }}
+            />
             Github
           </Flex>
         </Link>

@@ -26,27 +26,16 @@ const ExerciseInfoSkeleton = () => {
               startColor="white"
             />
             <Flex gap="15px" mt="auto !important">
-              <Skeleton
-                w="70px"
-                h="25px"
-                borderRadius="20px"
-                endColor="gray.100"
-                startColor="white"
-              />
-              <Skeleton
-                w="70px"
-                h="25px"
-                borderRadius="20px"
-                endColor="gray.100"
-                startColor="white"
-              />
-              <Skeleton
-                w="70px"
-                h="25px"
-                borderRadius="20px"
-                endColor="gray.100"
-                startColor="white"
-              />
+              {[1, 2, 3].map((num) => (
+                <Skeleton
+                  key={num}
+                  w="70px"
+                  h="25px"
+                  borderRadius="20px"
+                  endColor="gray.100"
+                  startColor="white"
+                />
+              ))}
             </Flex>
           </Stack>
         </Flex>

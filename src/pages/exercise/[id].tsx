@@ -1,4 +1,3 @@
-import ExerciseInfo from '@/components/ExerciseInfo';
 import SimilarExercises from '@/components/SimilarExercises';
 import ExerciseInfoSkeleton from '@/components/skeletons/ExerciseInfoSkeleton';
 import { baseUrl, fetchApi } from '@/utils/fetchApi';
@@ -10,9 +9,16 @@ import {
 import { makeCamelCase } from '@/utils/makeCamelCase';
 import { IExercise } from '@/utils/types';
 import { Box, Button, Divider } from '@chakra-ui/react';
+import dynamic from 'next/dynamic';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
-import React, { Suspense } from 'react';
+
+const DynamicExerciseInfo = dynamic(
+  () => import('../../components/ExerciseInfo'),
+  {
+    loading: () => <ExerciseInfoSkeleton />,
+  }
+);
 
 type Props = {
   exercise: IExercise;
@@ -31,13 +37,10 @@ const ExercisePage = ({ exercise, exercisesFiltered }: Props) => {
         <title>{makeCamelCase(exercise.name)}</title>
       </Head>
       <Box minH="calc(100vh - 100px)">
-        <Button m="20px" onClick={() => router.back()}>
+        <Button m="20px" onClick={router.back}>
           Back
         </Button>
-
-        <Suspense fallback={<ExerciseInfoSkeleton />}>
-          <ExerciseInfo exercise={exercise} />
-        </Suspense>
+        <DynamicExerciseInfo exercise={exercise} />
         <Divider />
         <SimilarExercises exercisesFiltered={exercisesFiltered} />
       </Box>

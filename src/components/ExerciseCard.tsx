@@ -16,40 +16,33 @@ const ExerciseCard = ({ exercise }: Props) => {
       h={{ md: '300px', base: '260px' }}
     >
       <div className={style.image}>
-        <Image src={exercise.gifUrl} alt="exercise" width={130} height={130} />
+        <Image
+          src={exercise.gifUrl}
+          alt="exercise"
+          width={130}
+          height={130}
+          priority={exercise.name === 'alternate heel touchers'}
+        />
       </div>
       <Stack h="100%" p="10px">
         <Heading size={{ md: 'sm', base: 'xs' }}>
           {makeCamelCase(exercise.name)}
         </Heading>
         <Wrap mt="auto !important">
-          <Badge
-            borderRadius="20px"
-            p="2px 8px"
-            w="fit-content"
-            fontSize={{ md: '10px', base: '9px' }}
-            colorScheme="yellow"
-          >
-            {makeCamelCase(exercise.bodyPart)}
-          </Badge>
-          <Badge
-            borderRadius="20px"
-            p="2px 8px"
-            w="fit-content"
-            fontSize={{ md: '10px', base: '9px' }}
-            colorScheme="pink"
-          >
-            {makeCamelCase(exercise.target)}
-          </Badge>
-          <Badge
-            borderRadius="20px"
-            p="2px 8px"
-            w="fit-content"
-            fontSize={{ md: '10px', base: '9px' }}
-            colorScheme="blue"
-          >
-            {makeCamelCase(exercise.equipment)}
-          </Badge>
+          {[exercise.bodyPart, exercise.target, exercise.equipment].map(
+            (item, i) => (
+              <Badge
+                key={item}
+                borderRadius="20px"
+                p="2px 8px"
+                w="fit-content"
+                fontSize={{ md: '10px', base: '9px' }}
+                colorScheme={i === 0 ? 'yellow' : i === 1 ? 'pink' : 'blue'}
+              >
+                {makeCamelCase(item)}
+              </Badge>
+            )
+          )}
         </Wrap>
       </Stack>
     </Card>
